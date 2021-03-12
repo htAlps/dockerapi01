@@ -64,7 +64,7 @@
         }
     }
 
-    func hdrHandler(ww http.ResponseWriter, req *http.Request) {
+    func headerHandler(ww http.ResponseWriter, req *http.Request) {
 
     }
 
@@ -72,11 +72,10 @@
 
         pr(PL0TnFmt, "instantiating mux & registering handlers on server routes")
         mux := &http.ServeMux{}
-        mux.HandleFunc("/", defHandler)     // http.HandleFunc("/", defHandler)
+        mux.HandleFunc("/", defHandler)                 // http.HandleFunc("/", defHandler)
+        mux.HandleFunc("/header", headerHandler)        // http.HandleFunc("/headers", headerHandler)
 
-        // http.HandleFunc("/headers", hdrHandler)
-
-        port := os.Getenv("port70"); pr("%s\n", port);
+        port := os.Getenv("muxport"); pr("%s\n", port);
         if port == "" {
             port = "8080"
         }
